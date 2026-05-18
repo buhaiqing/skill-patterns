@@ -37,6 +37,12 @@ cp -r "$REPO/skills/orchestration/orchestrator"           "$DEST/orchestrator"
 cp -r "$REPO/skills/evaluation/eval-optimize-loop"        "$DEST/eval-optimize-loop"
 ```
 
+如果你已经使用 `skills` CLI，也可以直接通过 `npx` 安装单个 Skill：
+
+```bash
+npx skills add https://github.com/buhaiqing/skill-patterns --skill routing/task-router
+```
+
 本仓库 Cursor Agent 预置副本： [`.agents/skills/`](../.agents/skills/)（与 `skills/` 保持同步）。
 
 ### Agno

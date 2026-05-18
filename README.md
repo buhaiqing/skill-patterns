@@ -40,6 +40,12 @@ curl -o- https://raw.githubusercontent.com/<YOU>/skill-patterns/main/skills/rout
 
 > 将 `<YOU>` 替换为实际 GitHub 用户名；克隆仓库更稳妥（见下方）。
 
+或直接使用 `npx skills add` 安装单个 Skill，前提是已安装 `skills` CLI：
+
+```bash
+npx skills add https://github.com/buhaiqing/skill-patterns --skill routing/task-router
+```
+
 或直接克隆整个 `skills/` 目录：
 
 ```bash
@@ -50,7 +56,7 @@ rm -rf /tmp/sp
 
 ### 5 分钟验证
 
-在 Cursor 中输入「帮我看下最近 7 天的 Jira 工单」，观察 Agent 是否自动触发 `task-router` Skill（由 `description` 软路由触发）。
+在 IDE 中输入「帮我看下最近 7 天的 Jira 工单」，观察 Agent 是否自动触发 `task-router` Skill（由 `description` 软路由触发）。
 
 ### 深入理解
 
