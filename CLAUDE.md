@@ -72,12 +72,12 @@ YAML frontmatter 必须字段：
 - 禁止 scope creep、「顺便重构」
 - 每项修复必须注明 `rubric_id`
 
-> **v2.0 更新**: `eval-optimize-loop` 现已升级为 **Rubric 工厂模式**：
-> - **Rubric 选择/生成（Round 0）**: 自动匹配或动态生成 rubric 模板
-> - **多行业/多语言**: 5 行业，23 个 rubric 模板（以 `_registry.yaml` 为准）
-> - **自进化**: 支持「复盘」命令 → 分析使用日志 → 优化模板
-> - **高性能**: 所有语言模板含性能与内存优化评测项
-> - **最佳实践库**: Python/Go/TypeScript/Rust 各语言详细最佳实践
+> **v2.0 更新**: `eval-optimize-loop` 现为 **Rubric 工厂 + 硬校验脚本**：
+> - **Round 0**: L1 `scripts/match_rubric_template.py`（或 `make match-rubric`）→ `instantiate_rubric.sh` → `check_round0_gate.sh`；Critic **只读** `rubric-instances/{task-id}-rubric.md`
+> - **模板库**: 5 行业，**23** 个模板（`_registry.yaml` 为准）；选型见 `references/critic-subagent-matrix.md`
+> - **复盘**: 只读分析不写模板；**[应用]/改规则** 后必须 `make validate-eval-gate`（`references/rubric-change-gate.md`）
+> - **usage_count**: `write_usage_log.sh` 默认 bump registry，供「≥5 次推荐复盘」
+> - **校验**: 仓库根 `make validate-eval` = `scripts/validate_all.sh`（含 match fixtures、test-prompts）；PR 有 CI
 
 ### Parallelization 约束
 - 真并行依赖平台（Task 并行调用）
@@ -100,7 +100,7 @@ YAML frontmatter 必须字段：
 3. 新增 `references/` 是否在 SKILL.md 中正确引用
 4. 是否违反关键约束（Critic独立、MAX_ITER、handoff必填）
 5. 组合规程（`composition-*.md`）是否同步更新
-6. 若改动 `eval-optimize-loop`：运行 `skills/evaluation/eval-optimize-loop/scripts/validate_all.sh`（注册表 path、规程契约、模板结构）；新增 rubric 模板须同步 `_registry.yaml`
+6. 若改动 `eval-optimize-loop`：仓库根 `make validate-eval`（或 `make validate-eval-gate REASON=…`）；新增/改 rubric 须同步 `_registry.yaml` 且 path 有对应 `.md` 文件
 
 ## 反模式速查
 
@@ -109,7 +109,7 @@ YAML frontmatter 必须字段：
 | 一个巨型 Skill 包打所有模式 | 按 Pattern 拆分，用组合矩阵串联 |
 | Worker / Generator 自评即 pass | Task 派发 readonly Critic |
 | 无 rubric ID 的模糊评审 | `critic-feedback-format` 可执行缺陷 |
-| 仅靠 `description` 做高风险路由 | L1 规则脚本兜底 → 低置信度人工确认 |
+| 仅靠 `description` 做高风险路由 | L1 脚本兜底（如 `match_rubric_template.py`、`task-router` 的 classify）→ 低置信人工确认 |
 | Skill 代替 CI evalset | Skill 写 rubric，CI 跑 evalset |
 
 ## 各 Skill 的 references/ 摘要
@@ -121,7 +121,7 @@ YAML frontmatter 必须字段：
 | `parallel-dispatch` | 域分组、worker-packet-template | 并发规程描述 |
 | `vote-synthesis` | rubric；`scripts/aggregate_votes.py` | 投票标准 + 外置聚合 |
 | `orchestrator` | skills-matrix、worker-prompt、handoff-format、composition-eval-loop | 分派策略 + 组合规程 |
-| `eval-optimize-loop` | rubric 工厂（23 模板）、critic-subagent 矩阵、composition-orchestrator | 评审标准 + 派发模板 |
+| `eval-optimize-loop` | rubric 工厂、`critic-subagent-matrix`、`round-0-rubric-factory`、`rubric-change-gate`、`scripts/`（match/validate/gate）、`composition-orchestrator` | 评审标准 + Critic 派发 + CI 校验 |
 
 ## 依赖的平台能力
 
