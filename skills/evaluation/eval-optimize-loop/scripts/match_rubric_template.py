@@ -24,29 +24,29 @@ INDUSTRY_HINTS: dict[str, list[str]] = {
 }
 
 SCENARIO_HINTS: dict[tuple[str, str], list[str]] = {
-    ("ops", "incident-response"): ["故障", "告警", "响应", "p0", "p1", "止损", "应急"],
-    ("ops", "config-change"): ["配置", "参数", "变更"],
-    ("ops", "deployment"): ["部署", "上线", "发布", "rollout", "deploy"],
-    ("ops", "monitoring"): ["监控", "告警", "metrics", "dashboard"],
-    ("finance", "trade-system"): ["交易", "撮合", "订单"],
-    ("finance", "risk-control"): ["风控", "限额", "拦截"],
+    ("ops", "incident-response"): ["响应", "止损", "应急"],  # "故障", "告警", "p0", "p1" covered by INDUSTRY_HINTS
+    ("ops", "config-change"): ["变更"],  # "配置", "参数" covered by INDUSTRY_HINTS
+    ("ops", "deployment"): ["上线", "发布", "rollout"],  # "部署" covered by INDUSTRY_HINTS
+    ("ops", "monitoring"): ["metrics", "dashboard"],  # "监控", "告警" covered by INDUSTRY_HINTS
+    ("finance", "trade-system"): ["撮合", "订单"],
+    ("finance", "risk-control"): ["限额", "拦截"],
     ("finance", "settlement"): ["清算", "对账", "结算"],
     ("finance", "reporting"): ["报表", "监管", "报送"],
     ("quant", "strategy-backtest"): ["回测", "策略", "因子"],
     ("quant", "live-trading"): ["实盘", "成交", "滑点"],
     ("quant", "data-pipeline"): ["数据", "行情", "清洗", "pipeline"],
-    ("quant", "risk-model"): ["var", "回撤", "风险模型"],
-    ("generic", "bug-fix"): ["bug", "修复", "缺陷", "fix", "hotfix"],
-    ("generic", "feature"): ["功能", "特性", "feature", "新增"],
-    ("generic", "refactor"): ["重构", "refactor", "清理"],
-    ("software-dev", "code-review"): ["code-review", "审查", "pr", "pull-request"],
-    ("software-dev", "api-design"): ["api", "接口", "rest", "设计"],
-    ("software-dev", "database-migration"): ["migration", "数据库", "ddl", "迁移"],
-    ("software-dev", "frontend-component"): ["前端", "component", "ui", "组件"],
-    ("software-dev", "python-service"): ["python", "fastapi", "flask", "django", "pytest"],
-    ("software-dev", "go-service"): ["golang", "go ", " gin", "echo"],
-    ("software-dev", "ts-service"): ["typescript", "nodejs", "nestjs", "express"],
-    ("software-dev", "rust-service"): ["rust", "tokio", "axum", "actix"],
+    ("quant", "risk-model"): ["var", "回撤", "风险模型"],  # "var" lowercase to match query
+    ("generic", "bug-fix"): ["hotfix"],  # "bug", "修复", "缺陷", "fix" covered by INDUSTRY_HINTS
+    ("generic", "feature"): ["特性"],  # "功能", "feature", "新增" covered by INDUSTRY_HINTS
+    ("generic", "refactor"): [],  # "重构", "refactor", "清理" covered by INDUSTRY_HINTS
+    ("software-dev", "code-review"): ["审查", "pull-request"],  # "code-review", "pr" covered by INDUSTRY_HINTS
+    ("software-dev", "api-design"): ["接口", "rest", "设计"],
+    ("software-dev", "database-migration"): ["migration", "ddl", "迁移"],
+    ("software-dev", "frontend-component"): ["component", "ui", "组件"],
+    ("software-dev", "python-service"): ["fastapi", "flask", "django", "pytest"],
+    ("software-dev", "go-service"): ["gin", "echo"],
+    ("software-dev", "ts-service"): ["nodejs", "nestjs", "express"],
+    ("software-dev", "rust-service"): ["tokio", "axum", "actix"],
 }
 
 # registry scenario -> template id suffix

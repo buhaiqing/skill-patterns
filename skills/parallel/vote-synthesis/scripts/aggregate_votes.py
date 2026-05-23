@@ -14,6 +14,7 @@ import argparse
 import json
 import sys
 from collections import Counter
+from typing import Any
 
 
 def majority(votes: list[str]) -> dict:
