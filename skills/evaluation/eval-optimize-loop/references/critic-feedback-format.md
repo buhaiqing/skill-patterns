@@ -15,16 +15,16 @@ Critic **必须**输出以下结构（编排者转交 Generator）：
 
 | rubric_id | 项 | 结果 | 证据 |
 |-----------|-----|------|------|
-| R1 | 测试 | pass/fail | {command + 摘要} |
-| R2 | 规格 | … | … |
+| {实例ID} | 测试 | pass/fail | {command + 摘要} |
+| {实例ID} | 规格 | … | … |
 | … | … | … | … |
 
 ## 可执行缺陷（fail 项必填）
 
 | rubric_id | 严重度 | 位置 | 问题 | 建议修复 |
 |-----------|--------|------|------|---------|
-| R2 | BLOCKER | `path:line` 或 plan § | {具体 gap} | {最小修复方向，不写完整 patch} |
-| R4 | normal | `path` | {scope creep 说明} | 回滚 / 移出 diff |
+| {实例ID} | BLOCKER | `path:line` 或 plan § | {具体 gap} | {最小修复方向，不写完整 patch} |
+| {实例ID} | normal | `path` | {scope creep 说明} | 回滚 / 移出 diff |
 
 ## Generator 下一步
 
@@ -36,7 +36,14 @@ Critic **必须**输出以下结构（编排者转交 Generator）：
 - subagent: {type}
 - readonly: true
 - 未改任何文件: 是
+- active_rubric: {与 Handoff rubric_path 一致}
 ```
+
+## 编排者事后清单（Critic 返回后、回复用户前）
+
+- [ ] 评测表 `rubric_id` 与 **rubric 实例** 表中 ID 一致（不得混用 R1/B1 除非实例即 R 系）
+- [ ] 已运行 `scripts/write_usage_log.sh`（pass / fail / escalate 均要写，见 rubric-usage-log-write.md）
+- [ ] escalate 时仍写日志，`outcome: escalate`
 
 ## 质量要求
 

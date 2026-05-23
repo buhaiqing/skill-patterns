@@ -1,6 +1,10 @@
-# Eval-Optimize — Rubric 模板（Critic 专用）
+# Eval-Optimize — 默认 Rubric（fallback 母版）
 
+> **Critic 不直接读本文件**。Round 0 须复制为 `rubric-instances/{task-id}-rubric.md`（或走快捷路径），Critic 只评 **实例**。见 [rubric-resolution.md](./rubric-resolution.md)。
+>
 > **定制**：按项目增删行。由 **Critic subagent** 填写评测表，Generator 不得最终裁定。
+
+## 评测项
 
 | ID | 项 | Pass 条件 | 级别 | Critic 证据要求 |
 |----|-----|----------|------|----------------|

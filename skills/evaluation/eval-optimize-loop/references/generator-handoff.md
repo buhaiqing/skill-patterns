@@ -5,6 +5,13 @@ Generator 每轮结束、请求 Critic 评测前**必须**组装（编排者可�
 ```markdown
 ## Generator Handoff — Round {n}
 
+### Active Rubric（必须）
+- rubric_path: `references/rubric-instances/{task-id}-rubric.md`
+- template_id: `{registry-id 或 generic-default}`
+- template_version: `{version}`
+
+（解析与 fallback 见 rubric-resolution.md）
+
 ### 任务与 spec
 {task_or_plan_excerpt — 验收标准原文}
 
@@ -27,16 +34,17 @@ $ {LINT_CMD}
 ### Generator 自检（仅供参考，不作 pass 依据）
 | rubric_id | 自评 | 说明 |
 |-----------|------|------|
-| R1 | pass/fail | … |
+| {实例表中的 ID} | pass/fail | … |
 
 ### 上轮 Critic 待修项（round > 1）
 | rubric_id | 上轮状态 | 本轮声称 |
 |-----------|---------|---------|
-| R2 | fail | fixed — {evidence} |
+| {id} | fail | fixed — {evidence} |
 ```
 
 ## 规则
 
-1. **验证证据必须新鲜**：Critic 评测前 Generator 已跑过约定命令
-2. Handoff **不得**包含 Generator 与用户的完整闲聊历史；只保留 spec + 产物 + 证据
-3. Critic **不得**采信 Generator 自检为 pass；须独立对照 rubric 与证据
+1. **Active Rubric 必填**：`rubric_path` 指向已确认的实例文件；Critic prompt 填入同一路径
+2. **验证证据必须新鲜**：Critic 评测前 Generator 已跑过约定命令
+3. Handoff **不得**包含 Generator 与用户的完整闲聊历史；只保留 spec + 产物 + 证据
+4. Critic **不得**采信 Generator 自检为 pass；须独立对照 **实例** rubric 与证据

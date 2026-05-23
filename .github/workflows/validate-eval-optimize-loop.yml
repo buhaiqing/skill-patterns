@@ -1,0 +1,24 @@
+name: validate-eval-optimize-loop
+
+on:
+  pull_request:
+    paths:
+      - 'skills/evaluation/eval-optimize-loop/**'
+      - '.github/workflows/validate-eval-optimize-loop.yml'
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'skills/evaluation/eval-optimize-loop/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run eval-optimize-loop validators
+        run: |
+          chmod +x skills/evaluation/eval-optimize-loop/scripts/*.sh
+          skills/evaluation/eval-optimize-loop/scripts/validate_all.sh

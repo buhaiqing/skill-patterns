@@ -8,9 +8,10 @@
 |------|------|
 | Worker handoff | 转为 `generator-handoff.md` 的「变更范围」「验证证据」 |
 | plan.md 任务条 | handoff 中「任务与 spec」、Critic 评 R2 |
-| Worker `allowed_paths` | Critic 允许读取范围、R4 范围项 |
+| Worker `allowed_paths` | Critic 允许读取范围、范围类 rubric 项 |
+| Round 0 实例 | `rubric-instances/{task-id}-rubric.md` → Handoff Active Rubric（见 rubric-resolution.md） |
 
-Worker handoff **不等于** Critic 通过；必须再走 Critic Task。
+Worker handoff **不等于** Critic 通过；必须再走 Critic Task（Critic 只读 rubric **实例**）。
 
 ## 每任务 vs 集成
 

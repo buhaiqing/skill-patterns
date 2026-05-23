@@ -12,9 +12,13 @@
 ### Generator Handoff
 {paste generator-handoff.md content}
 
-## Rubric
-Read 项目 rubric（本 Skill 默认 references/rubric.md）。
-逐项判定 pass / fail / N/A，BLOCKER 项 fail 则整轮未通过。
+## Rubric（Active — 必须使用实例）
+Read **仅** Handoff 中声明的 active rubric 文件：
+`{rubric_path}`
+
+解析规则见 references/rubric-resolution.md。禁止读 rubric-templates/ 母版。
+逐项判定 pass / fail / N/A；**评测表 rubric_id 必须与实例表 ID 列一致**。
+任一 BLOCKER 项 fail → 整轮未通过。
 
 ## 允许读取
 - Handoff 中列出的路径
@@ -32,16 +36,11 @@ Read 项目 rubric（本 Skill 默认 references/rubric.md）。
 Round {n} / MAX_ITER {MAX_ITER}
 ```
 
-## subagent_type 选型（Cursor）
+## subagent_type 选型
 
-| 评测侧重 | 建议 type |
-|---------|-----------|
-| 代码质量、逻辑、可维护性 | `code-reviewer` |
-| 规格与 plan 对齐 | `generalPurpose`（prompt 强调 spec） |
-| 安全 | `security-reviewer` |
-| 测试覆盖与断言 | `test-engineer` |
+**完整矩阵（允许/禁止、行业映射、双 Critic）**：见 [critic-subagent-matrix.md](./critic-subagent-matrix.md)。
 
-双 Critic（spec + quality）时：先 spec，pass 后再 quality；任一轮 fail 即回到 Generator。
+派发前在矩阵中选定一行；`readonly: true` 不可省略。
 
 ## Task 参数
 

@@ -1,0 +1,25 @@
+# L1 匹配回归用例（validate_match_rubric_fixtures.py）
+cases:
+  - query: "修一下订单金额计算的 bug，合并前质量门"
+    action: direct
+    template_id: generic-bug-fix
+
+  - query: "P0 线上故障告警响应，先止损"
+    action: direct
+    template_id: ops-incident-response
+
+  - query: "用 FastAPI 开发用户管理 API"
+    action: direct
+    template_id: python-service
+
+  - query: "配置变更上线前评审"
+    action: direct
+    template_id: ops-config-change
+
+  - query: "区块链跨链交易全新协议首次上线"
+    action: generate
+    template_id: ""
+
+  - query: "医疗影像 AI 诊断合规审批流程"
+    action: generate
+    template_id: ""

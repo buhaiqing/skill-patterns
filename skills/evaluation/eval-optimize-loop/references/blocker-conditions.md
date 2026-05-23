@@ -4,7 +4,8 @@
 
 ## Rubric BLOCKER 项 fail
 
-见 [rubric.md](./rubric.md) 中级别为 BLOCKER 的行（默认 R1、R2、R5）。
+见 **当前 Active Rubric 实例**（[rubric-resolution.md](./rubric-resolution.md)）中级别为 BLOCKER 的所有 `rubric_id`。
+不得以固定 R1/R2/R5 代替；行业实例常见 ID 为 B1、O1、D1 等。
 
 ## 立即终止整个循环（不进入下一轮 Generate）
 
@@ -21,7 +22,7 @@
 |---------|------|
 | Generator 无 Critic 输出即宣称 pass | 流程违规 |
 | Critic 修改了仓库文件 | 角色混用，本轮作废 |
-| 无验证命令却对 R1 标 pass | Critic 无效，需重派 |
+| 无验证命令却对依赖命令/evidence 的 rubric 项标 pass | Critic 无效，需重派 |
 
 ## 与 max-iterations 的关系
 

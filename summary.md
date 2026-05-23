@@ -37,6 +37,13 @@
 | 4 | **Orchestrator-Workers** | ⭐⭐⭐⭐ | [04-orchestrator-workers.md](./docs/04-orchestrator-workers.md) | meta-skill + Worker + Task |
 | 5 | **Evaluator-Optimizer (Critic-Generator)** | ⭐⭐⭐⭐ | [05-evaluator-optimizer.md](./docs/05-evaluator-optimizer.md) | Critic subagent + rubric + Harness |
 
+> **更新**: `eval-optimize-loop` Skill 已升级为 **Rubric 工厂模式**（v2.0）：
+> - **多行业支持**: 5 个行业（generic/ops/finance/quant/software-dev）
+> - **多语言支持**: 4 种语言（Python/Go/TypeScript/Rust）
+> - **自进化机制**: 复盘 → 分析 → 优化 → 沉淀
+> - **高性能检查**: 所有语言均含性能与内存优化评测项
+> - **23 个模板**: 覆盖 Bug修复、API设计、数据库迁移、策略回测等场景（registry 为准）
+
 ### 实践
 
 | 文档 | 内容 |

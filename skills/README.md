@@ -18,6 +18,12 @@ Skill 负责**规程、门禁与组合**；真并行、硬路由、Critic 派发
 | Orchestrator-Workers | `orchestrator` | [orchestration/orchestrator](./orchestration/orchestrator/) | [04-orchestrator-workers](../docs/04-orchestrator-workers.md) |
 | Evaluator-Optimizer (**Critic-Generator**) | `eval-optimize-loop` | [evaluation/eval-optimize-loop](./evaluation/eval-optimize-loop/) | [05-evaluator-optimizer](../docs/05-evaluator-optimizer.md) |
 
+> **更新**: `eval-optimize-loop` 现已升级为 **Rubric 工厂模式**，支持：
+> - 5 个行业分类（generic/ops/finance/quant/software-dev）
+> - 23 个 rubric 模板（含 Python/Go/TypeScript/Rust 语言特定项，以 registry 为准）
+> - 自进化机制（复盘 → 优化 → 沉淀）
+> - 高性能检查项（所有语言）
+
 ---
 
 ## 快速安装（Cursor）
@@ -120,7 +126,7 @@ plan.md → orchestrator 并行 Worker → 每任务 Critic 循环 → 集成 Cr
 | `parallel-dispatch` | 域分组、worker-packet-template |
 | `vote-synthesis` | rubric；`scripts/aggregate_votes.py` |
 | `orchestrator` | skills-matrix、worker-prompt、handoff-format、composition-eval-loop |
-| `eval-optimize-loop` | rubric、max-iterations、blocker-conditions、critic/generator 模板、composition-orchestrator |
+| `eval-optimize-loop` | rubric 工厂（23 模板）、L1 匹配脚本、critic-subagent 矩阵、复盘/进化、composition-orchestrator |
 
 ---
 

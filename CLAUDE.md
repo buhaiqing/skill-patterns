@@ -72,6 +72,13 @@ YAML frontmatter 必须字段：
 - 禁止 scope creep、「顺便重构」
 - 每项修复必须注明 `rubric_id`
 
+> **v2.0 更新**: `eval-optimize-loop` 现已升级为 **Rubric 工厂模式**：
+> - **Rubric 选择/生成（Round 0）**: 自动匹配或动态生成 rubric 模板
+> - **多行业/多语言**: 5 行业，23 个 rubric 模板（以 `_registry.yaml` 为准）
+> - **自进化**: 支持「复盘」命令 → 分析使用日志 → 优化模板
+> - **高性能**: 所有语言模板含性能与内存优化评测项
+> - **最佳实践库**: Python/Go/TypeScript/Rust 各语言详细最佳实践
+
 ### Parallelization 约束
 - 真并行依赖平台（Task 并行调用）
 - 投票聚合必须外置脚本（`scripts/aggregate_votes.py`）
@@ -93,6 +100,7 @@ YAML frontmatter 必须字段：
 3. 新增 `references/` 是否在 SKILL.md 中正确引用
 4. 是否违反关键约束（Critic独立、MAX_ITER、handoff必填）
 5. 组合规程（`composition-*.md`）是否同步更新
+6. 若改动 `eval-optimize-loop`：运行 `skills/evaluation/eval-optimize-loop/scripts/validate_all.sh`（注册表 path、规程契约、模板结构）；新增 rubric 模板须同步 `_registry.yaml`
 
 ## 反模式速查
 
@@ -103,6 +111,43 @@ YAML frontmatter 必须字段：
 | 无 rubric ID 的模糊评审 | `critic-feedback-format` 可执行缺陷 |
 | 仅靠 `description` 做高风险路由 | L1 规则脚本兜底 → 低置信度人工确认 |
 | Skill 代替 CI evalset | Skill 写 rubric，CI 跑 evalset |
+
+## 各 Skill 的 references/ 摘要
+
+| Skill | 主要 references 文件 | 用途 |
+|-------|---------------------|------|
+| `delivery-chain` | 链式步骤与门禁模板 | 步骤顺序、中间产物验证 |
+| `task-router` | 路由矩阵；`scripts/classify.py` | 软路由 + 确定性分类器兜底 |
+| `parallel-dispatch` | 域分组、worker-packet-template | 并发规程描述 |
+| `vote-synthesis` | rubric；`scripts/aggregate_votes.py` | 投票标准 + 外置聚合 |
+| `orchestrator` | skills-matrix、worker-prompt、handoff-format、composition-eval-loop | 分派策略 + 组合规程 |
+| `eval-optimize-loop` | rubric 工厂（23 模板）、critic-subagent 矩阵、composition-orchestrator | 评审标准 + 派发模板 |
+
+## 依赖的平台能力
+
+| 能力 | 用于哪个 Skill |
+|------|---------------|
+| Task / 子 Agent | `parallel-dispatch`、`orchestrator`、`eval-optimize-loop`（Critic） |
+| `readonly: true` 派发 | `eval-optimize-loop`（Critic 必须独立） |
+| TodoWrite | `orchestrator`、`delivery-chain` |
+| 并行 tool call | `parallel-dispatch` |
+| 外部 Eval CI | `eval-optimize-loop` 合并前门 |
+
+## 推荐使用顺序
+
+1. **先读 docs** — 理解「Skill ≠ 运行时」与三层架构
+2. **定制 `references/`** — 替换 `{TEST_CMD}`、`{TASK_TYPE}` 等项目占位符
+3. **按场景组合 Skill** — 见 Skill 组合链表
+4. **硬语义外置** — 路由脚本、投票聚合、CI evalset 不写在 SKILL 里代替执行
+
+## 平台兼容性
+
+| 平台 | 安装路径 | 说明 |
+|------|---------|------|
+| Cursor | `.cursor/skills/<skill-name>/` | 原生支持 |
+| Claude Code | `.agents/skills/` 或 `~/.claude/skills/` | 原生支持 |
+| OpenCode | 按软件包规范放置 | 原生支持 |
+| Agno | `LocalSkills()` loader | SDK 加载 |
 
 ## 安装 Skill 到目标项目
 
@@ -119,4 +164,16 @@ npx skills add https://github.com/buhaiqing/skill-patterns --skill routing/task-
 Claude Code 用户：
 ```bash
 # 放到 .agents/skills/ 或 ~/.claude/skills/
+```
+
+Agno 用户：
+```python
+from agno.skills import Skills, LocalSkills
+
+agent = Agent(
+    skills=Skills(loaders=[
+        LocalSkills("/path/to/patterns/skills/chaining"),
+        LocalSkills("/path/to/patterns/skills/routing"),
+    ]),
+)
 ```

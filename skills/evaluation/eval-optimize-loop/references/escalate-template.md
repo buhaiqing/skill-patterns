@@ -34,4 +34,9 @@
 \`\`\`text
 {last verify command output}
 \`\`\`
+
+## 编排者（escalate 后仍须执行）
+
+- [ ] `scripts/write_usage_log.sh --outcome escalate ...`（见 rubric-usage-log-write.md）
+- [ ] 未写日志不得标记本 Skill 流程结束
 ```

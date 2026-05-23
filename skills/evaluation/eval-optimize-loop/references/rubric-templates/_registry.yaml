@@ -1,0 +1,306 @@
+# Rubric 模板注册表
+# 用于模板索引、版本管理、质量追踪
+#
+# 新增/修改条目后必须运行:
+#   ./scripts/run_rubric_change_gate.sh "registry-updated"
+# 规则: 每个 path 必须有对应 .md 文件；每个 rubric-*.md 必须在本文件注册（防孤儿/死链）
+
+version: "2.0"
+generated_at: "2025-05-18"
+
+# 模板元数据
+templates:
+  # ========== 通用软件开发 ==========
+  - id: "generic-bug-fix"
+    industry: "generic"
+    scenario: "bug-fix"
+    path: "industry-generic/rubric-bug-fix.md"
+    keywords: ["bug", "修复", "缺陷", "fix", "hotfix", "patch"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 1
+    avg_rating: 0
+    status: "active"
+    
+  - id: "generic-feature"
+    industry: "generic"
+    scenario: "feature"
+    path: "industry-generic/rubric-feature.md"
+    keywords: ["功能", "特性", "feature", "新增", "开发"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "generic-refactor"
+    industry: "generic"
+    scenario: "refactor"
+    path: "industry-generic/rubric-refactor.md"
+    keywords: ["重构", "优化", "refactor", "重构", "代码清理"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+
+  # ========== 软件开发行业 ==========
+  - id: "software-dev-code-review"
+    industry: "software-dev"
+    scenario: "code-review"
+    path: "industry-software-dev/rubric-code-review.md"
+    keywords: ["code-review", "代码审查", "PR", "pull-request", "审查"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "software-dev-api-design"
+    industry: "software-dev"
+    scenario: "api-design"
+    path: "industry-software-dev/rubric-api-design.md"
+    keywords: ["api", "接口设计", "REST", "接口", "API设计"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "software-dev-database-migration"
+    industry: "software-dev"
+    scenario: "database-migration"
+    path: "industry-software-dev/rubric-database-migration.md"
+    keywords: ["database", "migration", "数据库", "迁移", "DDL"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "software-dev-frontend-component"
+    industry: "software-dev"
+    scenario: "frontend-component"
+    path: "industry-software-dev/rubric-frontend-component.md"
+    keywords: ["frontend", "component", "UI", "组件", "前端"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  # ========== 语言特定模板 ==========
+  - id: "python-service"
+    industry: "software-dev"
+    scenario: "python-service"
+    language: "python"
+    path: "industry-software-dev/python/rubric-python-service.md"
+    keywords: ["python", "flask", "fastapi", "django", "service"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "go-service"
+    industry: "software-dev"
+    scenario: "go-service"
+    language: "go"
+    path: "industry-software-dev/go/rubric-go-service.md"
+    keywords: ["go", "golang", "gin", "echo", "service"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "ts-service"
+    industry: "software-dev"
+    scenario: "ts-service"
+    language: "typescript"
+    path: "industry-software-dev/typescript/rubric-ts-service.md"
+    keywords: ["typescript", "ts", "nodejs", "express", "nestjs"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "rust-service"
+    industry: "software-dev"
+    scenario: "rust-service"
+    language: "rust"
+    path: "industry-software-dev/rust/rubric-rust-service.md"
+    keywords: ["rust", "tokio", "axum", "actix", "service"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+
+  # ========== 运维行业 ==========
+  - id: "ops-incident-response"
+    industry: "ops"
+    scenario: "incident-response"
+    path: "industry-ops/rubric-incident-response.md"
+    keywords: ["故障", "告警", "响应", "止损", "P0", "P1", "incident", "outage"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "ops-config-change"
+    industry: "ops"
+    scenario: "config-change"
+    path: "industry-ops/rubric-config-change.md"
+    keywords: ["配置", "参数", "修改", "config", "变更", "配置变更"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "ops-deployment"
+    industry: "ops"
+    scenario: "deployment"
+    path: "industry-ops/rubric-deployment.md"
+    keywords: ["部署", "上线", "发布", "deploy", "release", " rollout"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "ops-monitoring"
+    industry: "ops"
+    scenario: "monitoring"
+    path: "industry-ops/rubric-monitoring.md"
+    keywords: ["监控", "告警", "指标", "monitoring", "metrics", "dashboard"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+
+  # ========== 金融行业 ==========
+  - id: "finance-trade-system"
+    industry: "finance"
+    scenario: "trade-system"
+    path: "industry-finance/rubric-trade-system.md"
+    keywords: ["交易", "撮合", "订单", "资金", "trade", "order", "撮合"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "finance-risk-control"
+    industry: "finance"
+    scenario: "risk-control"
+    path: "industry-finance/rubric-risk-control.md"
+    keywords: ["风控", "限额", "拦截", "risk", "限额", "风控规则"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "finance-settlement"
+    industry: "finance"
+    scenario: "settlement"
+    path: "industry-finance/rubric-settlement.md"
+    keywords: ["清算", "对账", "结算", "settlement", "reconciliation", "清算"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "finance-reporting"
+    industry: "finance"
+    scenario: "reporting"
+    path: "industry-finance/rubric-reporting.md"
+    keywords: ["报表", "监管", "报送", "reporting", "监管报送", "合规"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+
+  # ========== 量化交易 ==========
+  - id: "quant-strategy-backtest"
+    industry: "quant"
+    scenario: "strategy-backtest"
+    path: "industry-quant/rubric-strategy-backtest.md"
+    keywords: ["回测", "策略", "夏普", "因子", "backtest", "strategy", "夏普比率"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "quant-live-trading"
+    industry: "quant"
+    scenario: "live-trading"
+    path: "industry-quant/rubric-live-trading.md"
+    keywords: ["实盘", "成交", "滑点", "live", "trading", "实盘交易", "滑点"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "quant-data-pipeline"
+    industry: "quant"
+    scenario: "data-pipeline"
+    path: "industry-quant/rubric-data-pipeline.md"
+    keywords: ["数据", "行情", "清洗", "data", "pipeline", "行情数据", "数据清洗"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+    
+  - id: "quant-risk-model"
+    industry: "quant"
+    scenario: "risk-model"
+    path: "industry-quant/rubric-risk-model.md"
+    keywords: ["模型", "VaR", "回撤", "risk", "model", "VaR", "最大回撤"]
+    version: "1.0"
+    created_at: "2025-05-18"
+    updated_at: "2025-05-18"
+    usage_count: 0
+    avg_rating: 0
+    status: "active"
+
+# 统计信息
+stats:
+  total_templates: 23
+  active_templates: 23
+  deprecated_templates: 0
+  industries: ["generic", "ops", "finance", "quant", "software-dev"]
+  languages: ["python", "go", "typescript", "rust"]
+  last_updated: "2025-05-18"

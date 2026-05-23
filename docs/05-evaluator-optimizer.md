@@ -2,6 +2,14 @@
 
 > [← 返回总览](../summary.md) · 适配度：⭐⭐⭐⭐ · Skill 定义 rubric 与软循环，Harness 做硬评测
 
+> **🆕 v2.0 更新**: `eval-optimize-loop` 现已升级为 **Rubric 工厂模式**，支持动态生成、多行业/多语言、自进化复盘。详见 [Skill 实现](../skills/evaluation/eval-optimize-loop/)。
+>
+> 新特性：
+> - **Round 0**: Rubric 选择/生成 — 自动匹配或动态生成模板
+> - **23 个模板**: 5 行业 × 多场景（含 Python/Go/TypeScript/Rust 语言特定模板，以 registry 为准）
+> - **自进化**: 「复盘」命令 → 使用日志分析 → 模板优化 → 版本沉淀
+> - **高性能**: 所有语言模板含性能与内存优化评测项
+
 ---
 
 ## 原理
@@ -63,16 +71,37 @@ flowchart LR
 ```text
 evaluation/
 └── eval-optimize-loop/
-    ├── SKILL.md
+    ├── SKILL.md                           # 含 Round 0 选择/生成 + 复盘进化流程
     └── references/
-        ├── rubric.md                  # pass/fail 标准
-        ├── max-iterations.md          # 轮次与 escalate
-        ├── blocker-conditions.md      # 立即终止条件
-        ├── generator-handoff.md       # Generator → Critic 输入包
-        ├── critic-prompt-template.md  # Task 派发 Critic 模板
-        ├── critic-feedback-format.md  # Critic → Generator 反馈格式
+        ├── rubric.md
+        ├── rubric-resolution.md
+        ├── rubric-change-gate.md
+        ├── round-0-rubric-factory.md
+        ├── round-0-gate.md
+        ├── retrospective-evolution.md
+        ├── critic-subagent-matrix.md
+        ├── rubric-selector.md
+        ├── rubric-templates/              # 23 模板 + _registry.yaml
+        ├── rubric-instances/
+        ├── rubric-usage-logs/
+        ├── fixtures/                      # match / usage log 样例
+        ├── rubric-generator/
+        ├── generator-handoff.md
+        ├── critic-prompt-template.md
+        ├── critic-feedback-format.md
+        ├── max-iterations.md
+        ├── blocker-conditions.md
         └── escalate-template.md
+    ├── scripts/                           # validate_all、match、bump、gate
+    └── test-prompts.json
 ```
+
+> **v2.0 重大升级**: 从单一 rubric 升级为 **Rubric 工厂模式**，支持：
+> 1. **多行业/多场景**: 5 行业，23 个 rubric 模板（`_registry.yaml`）
+> 2. **语言特定**: Python/Go/TypeScript/Rust 各语言最佳实践
+> 3. **动态生成**: 新场景自动生成 rubric 模板
+> 4. **自进化**: 「复盘」命令触发模板持续优化
+> 5. **校验**: `make validate-eval` / L1 `match_rubric_template.py` + CI fixtures
 
 ## Critic 派发协议（平台层）
 

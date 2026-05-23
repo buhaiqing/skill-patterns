@@ -1,0 +1,7 @@
+# Rubric 实例化目录
+
+此目录存放单次任务的 rubric 实例。
+
+命名规范：{task-id}-rubric.md
+
+此目录已加入 .gitignore，不提交到仓库。

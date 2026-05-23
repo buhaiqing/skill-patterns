@@ -33,3 +33,9 @@ go.work.sum
 .DS_Store
 .omc/
 .omo/
+
+# Rubric 实例化和日志（不提交到仓库）
+skills/evaluation/eval-optimize-loop/references/rubric-instances/*.md
+!skills/evaluation/eval-optimize-loop/references/rubric-instances/.gitkeep
+skills/evaluation/eval-optimize-loop/references/rubric-usage-logs/*.yaml
+!skills/evaluation/eval-optimize-loop/references/rubric-usage-logs/.gitkeep

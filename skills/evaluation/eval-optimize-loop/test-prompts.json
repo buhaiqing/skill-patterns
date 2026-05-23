@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "prompt": "修一下订单金额计算的 bug，合并前帮我过一遍质量门",
+    "match": {
+      "action": "direct",
+      "template_id": "generic-bug-fix"
+    },
+    "expected": "Round 0 匹配 generic-bug-fix → 实例化 → Critic code-reviewer readonly → 结构化反馈含 rubric_id"
+  },
+  {
+    "id": 2,
+    "prompt": "P0 线上故障：支付服务超时，先止损再根因，按运维 rubric 评审 handoff",
+    "match": {
+      "action": "direct",
+      "template_id": "ops-incident-response"
+    },
+    "expected": "匹配 ops-incident-response；Critic quality-reviewer 或 verifier；BLOCKER 项有证据列"
+  },
+  {
+    "id": 3,
+    "prompt": "用默认 rubric 检查这个单行 typo 修复是否可以 merge",
+    "expected": "快捷路径 instantiate --default；不触发 L1 匹配；gate 通过后 1 轮 Critic"
+  }
+]

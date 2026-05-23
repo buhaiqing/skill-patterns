@@ -1,0 +1,37 @@
+# Rubric 使用日志 Schema（复盘 / 进化输入）
+# 路径: references/rubric-usage-logs/{template_id}-{YYYYMMDD-HHMMSS}.yaml
+# 写入规程: references/rubric-usage-log-write.md
+
+schema_version: "1.0"
+
+required_fields:
+  - template_id      # 与 _registry.yaml 中 id 一致，如 ops-incident-response
+  - task_id          # 与 rubric-instances/{task-id}-rubric.md 的 task-id 一致
+  - rubric_instance  # 实例相对路径，如 references/rubric-instances/T3-rubric.md
+  - started_at       # ISO8601
+  - ended_at         # ISO8601
+  - outcome          # pass | fail | escalate
+  - rounds_used      # 1..MAX_ITER
+  - failed_rubric_ids  # 最后一轮仍 fail 的 id 列表（通过则为 []）
+
+optional_fields:
+  - user_rating      # 1-5
+  - user_feedback    # 自由文本
+  - blocker_ids      # 触发 escalate 的 BLOCKER id
+  - critic_subagent  # 如 code-reviewer
+  - project          # 仓库或项目名
+
+# --- 示例（勿提交真实路径到公共仓库时可放本地）---
+example:
+  schema_version: "1.0"
+  template_id: ops-incident-response
+  task_id: T3
+  rubric_instance: references/rubric-instances/T3-rubric.md
+  started_at: "2026-05-23T10:00:00+08:00"
+  ended_at: "2026-05-23T10:45:00+08:00"
+  outcome: pass
+  rounds_used: 2
+  failed_rubric_ids: []
+  user_rating: 4
+  critic_subagent: code-reviewer
+  project: skill-patterns
