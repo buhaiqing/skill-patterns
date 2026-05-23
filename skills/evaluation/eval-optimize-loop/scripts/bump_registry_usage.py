@@ -11,9 +11,10 @@ def bump(registry_path: Path, template_id: str) -> bool:
     if template_id in ("", "generic-default"):
         return False
     text = registry_path.read_text(encoding="utf-8")
+    # Use re.DOTALL instead of [\s\S]*? for better performance
     pattern = re.compile(
-        rf'(- id: "{re.escape(template_id)}"[\s\S]*?usage_count: )(\d+)',
-        re.MULTILINE,
+        rf'(- id: "{re.escape(template_id)}".*?usage_count: )(\d+)',
+        re.MULTILINE | re.DOTALL,
     )
     m = pattern.search(text)
     if not m:

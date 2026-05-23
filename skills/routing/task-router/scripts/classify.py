@@ -19,19 +19,21 @@ from pathlib import Path
 # Customize: type_id -> (keywords, weight per hit)
 RULES: dict[str, list[tuple[str, int]]] = {
     "T1": [
-        (r"\b(bug|fix|error|报错|异常|regression)\b", 2),
-        (r"\b(failed test|测试失败)\b", 3),
+        (r"\b(bug|fix|error|报错|异常|regression|hotfix|patch|crash)\b", 2),
+        (r"\b(failed test|测试失败|test failure|broken)\b", 3),
     ],
     "T2": [
-        (r"\b(feature|新功能|implement|add)\b", 2),
-        (r"\b(需求|story)\b", 2),
+        (r"\b(feature|新功能|implement|add|新增|开发|开发需求)\b", 2),
+        (r"\b(需求|story|requirement|enhancement)\b", 2),
     ],
     "T3": [
-        (r"\b(deploy|部署|config|巡检|ops|k8s|release)\b", 2),
+        (r"\b(deploy|部署|config|配置|巡检|ops|k8s|kubernetes|release|发布|上线|monitoring|监控|告警)\b", 2),
+        (r"\b(incident|故障|outage|p0|p1|止损)\b", 3),  # Higher weight for incidents
     ],
     "T4": [
-        (r"\b(how|why|explain|是什么|怎么用)\b", 2),
-        (r"\b(document|文档)\b", 2),
+        (r"\b(how|why|explain|是什么|怎么用|help|如何|怎么)\b", 2),
+        (r"\b(document|文档|documentation|wiki|readme)\b", 2),
+        (r"\b(question|问题|咨询|了解)\b", 1),
     ],
 }
 
